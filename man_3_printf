@@ -52,7 +52,7 @@ does not handle flags, field width, precision, length modifiers,
 or buffer management used in the standard C library printf.
 
 .SH AUTHOR
-Written by Your Name.
+Mariam Almaleki.
 
 .SH SEE ALSO
 printf(3)
