@@ -1,28 +1,59 @@
-This team project has three manditory tasks and a couples as advance tasks.
-I am Mariam teaming up with my peer Yara to create our printf function.
+.TH _PRINTF 3 "November 2025" "1.0" "User Commands"
+.SH NAME
+_printf \- custom implementation of the printf function
 
-these are some general rules at the beginning we need to follow, such as:
-- All your files should end with a new line
-- A README.md file, at the root of the folder of the project is mandatory
-- No more than 5 functions per file
+.SH SYNOPSIS
+.B #include "main.h"
+.br
+.B int _printf(const char *format, ...);
 
-Also there are limited functions to use:
-write (man 2 write)
-malloc (man 3 malloc)
-free (man 3 free)
-va_start (man 3 va_start)
-va_end (man 3 va_end)
-va_copy (man 3 va_copy)
-va_arg (man 3 va_arg)
+.SH DESCRIPTION
+The
+.B _printf()
+function produces output according to a format.
+It writes its output to the standard output stream (stdout)
+using the write system call.
 
-_________________________________________________________________________________
-                                 Task number 0 - Printf
-_________________________________________________________________________________
-We need to build a function following the rules mentioned above. this function should
-be able to print all these specifers (c s %).
-using Prototype: int _printf(const char *format, ...);
-printing (c) which is a single character
-printing (s) which is a string
-printing (%) which is a percentage sign
+The
+.I format
+string is composed of zero or more directives.
+Ordinary characters in the format string are written to the output
+unchanged.
 
+A directive starts with the percent sign (%) and is followed by a
+conversion specifier.
+
+The following conversion specifiers are handled:
+
+.TP
+.B %c
+Prints a single character.
+
+.TP
+.B %s
+Prints a null-terminated string.
+
+.TP
+.B %%
+Prints a literal percent sign.
+
+.SH RETURN VALUE
+Upon successful completion,
+.B _printf()
+returns the number of characters printed,
+excluding the terminating null byte.
+
+If an error occurs, the function returns -1.
+
+.SH LIMITATIONS
+This version of
+.B _printf()
+does not handle flags, field width, precision, length modifiers,
+or buffer management used in the standard C library printf.
+
+.SH AUTHOR
+Written by Your Name.
+
+.SH SEE ALSO
+printf(3)
 
