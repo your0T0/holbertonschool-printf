@@ -1,58 +1,67 @@
 #include "main.h"
-#include <stdarg.h>
-#include <unistd.h>
 
 /**
- * _printf - Custom printf function
- * @format: Format string containing directives
+ * _printf - produces output according to a format
+ * @format: format string containing characters and format specifiers
  *
- * Return: Number of characters printed
+ * Return: number of characters printed, or -1 on error
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i = 0;
-	int count = 0;
+    va_list args;
+    int i = 0;
+    int count = 0;
 
-	if (format == NULL)
-		return (-1);
+    if (format == NULL)
+        return (-1);
 
-	va_start(args, format);
+    va_start(args, format);
 
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
+    while (format[i] != '\0')
+    {
+        if (format[i] != '%')
+        {
+            _putchar(format[i]);
+            count++;
+        }
+        else
+        {
+            i++;
 
-			if (format[i] == 'c')
-				count += print_char(args);
+            if (format[i] == '\0')
+            {
+                va_end(args);
+                return (-1);
+            }
 
-			else if (format[i] == 's')
-				count += print_string(args);
+            if (format[i] == 'c')
+            {
+                char c = (char)va_arg(args, int);
+                _putchar(c);
+                count++;
+            }
+            else if (format[i] == 's')
+            {
+                char *s = va_arg(args, char *);
+                count += print_string(s);
+            }
+            else if (format[i] == '%')
+            {
+                _putchar('%');
+                count++;
+            }
+            else
+            {
+                _putchar('%');
+                _putchar(format[i]);
+                count += 2;
+            }
+        }
 
-			else if (format[i] == '%')
-			{
-				write(1, "%", 1);
-				count++;
-			}
+        i++;
+    }
 
-			else
-			{
-				write(1, "%", 1);
-				write(1, &format[i], 1);
-				count += 2;
-			}
-		}
-		else
-		{
-			write(1, &format[i], 1);
-			count++;
-		}
-
-		i++;
-	}
-
-	va_end(args);
-	return (count);
+    va_end(args);
+    return (count);
 }
+

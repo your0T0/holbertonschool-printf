@@ -21,13 +21,10 @@ int count = 0;
 if (str == NULL)
 str = "(null)";
 while (str[count] != '\0')  
+{ 
 _putchar(str[count]);
 count++;
+}
 return (count);
 }
 
-/**
-* print _number - prints an integer
-* @n: Integer to print 
-* Return : Number of characters printed
-*/
