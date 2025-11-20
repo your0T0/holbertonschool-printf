@@ -44,10 +44,15 @@ int _printf(const char *format, ...)
 				char *str = va_arg(args, char *);
 				count += print_string(str);
 			}
-			else if (format[i] == '%')
+			else if (format[i] == '%' )
 			{
 				_putchar('%');
 				count++;
+			}
+			else if (format[i] == 'd' || format[i] == 'i')
+			{
+				int num = va_arg(args, int);
+				count += print_number(num);
 			}
 			else
 			{
