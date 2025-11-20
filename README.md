@@ -24,10 +24,13 @@ using Prototype: int _printf(const char *format, ...);
 printing (c) which is a single character
 printing (s) which is a string
 printing (%) which is a percentage sign
-
-
-
+creating 4 files:
+_printf.c - For Script
+main.h - Header files and  prototypes
+print_string.c - Prints a string
+functions.c - 
 _________________________________________________________________________________
                                  Task number 1 - printf
 _________________________________________________________________________________
 building 
+.:
