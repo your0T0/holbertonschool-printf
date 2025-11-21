@@ -54,7 +54,11 @@ int _printf(const char *format, ...)
 				int num = va_arg(args, int);
 				count += print_number(num);
 			}
-			else
+                        else if (format[i] == 'b')
+                        {
+                                 count += print_binary(args);
+                        }
+                         else
 			{
 				_putchar('%');
 				_putchar(format[i]);

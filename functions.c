@@ -56,3 +56,35 @@ int print_number(int n)
 
     return (count);
 }
+
+int print_binary(va_list args)
+{
+    unsigned int n = va_arg(args, unsigned int);
+    unsigned int mask = 1 << 31;
+    int started = 0;
+    int count = 0;
+
+    if (n == 0)
+    {
+        write(1, "0", 1);
+        return (1);
+    }
+
+    while (mask > 0)
+    {
+        if (n & mask)
+        {
+            write(1, "1", 1);
+            count++;
+            started = 1;
+        }
+        else if (started)
+        {
+            write(1, "0", 1);
+            count++;
+        }
+        mask >>= 1;
+    }
+
+    return (count);
+}
