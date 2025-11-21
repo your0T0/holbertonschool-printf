@@ -1,3 +1,35 @@
+\" ===================== FILE OVERVIEW =====================
+\" File: man_3_printf
+\" Purpose:
+\"     This file provides the manual (man page) documentation for
+\"     the custom _printf function implemented in this project.
+\"
+\" What is a man page?
+\"     • A man page is an official Unix/Linux manual page.
+\"     • It explains what a function/command does, how to use it,
+\"       what parameters it takes, what it returns, and any
+\"       limitations it has.
+\"
+\" Why do we need this file?
+\"     • To document how _printf works for users and reviewers.
+\"     • To follow the same style as the real printf documentation
+\"       found in section 3 of the system manuals (man 3 printf).
+\"     • The project requirements explicitly ask for a man page.
+\"
+\" What does this file contain?
+\"     • NAME:       Short description of the function.
+\"     • SYNOPSIS:   Header file + function prototype.
+\"     • DESCRIPTION: How the function behaves and what formats it handles.
+\"     • RETURN VALUE: Success/error behavior.
+\"     • LIMITATIONS: Restrictions of this implementation.
+\"     • SEE ALSO:    Related references like printf(3).
+\"
+\" Notes:
+\"     • This file uses groff formatting syntax (the standard for man pages).
+\"     • It documents support for the required format specifiers:
+\"       %c, %s, %%, %d, %i
+\" ==========================================================
+
 .TH _PRINTF 3 "November 2025" "1.0" "User Commands"
 .SH NAME
 _printf \- custom implementation of the printf function
@@ -10,18 +42,16 @@ _printf \- custom implementation of the printf function
 .SH DESCRIPTION
 The
 .B _printf()
-function produces output according to a format.
+function produces output according to a format string.
 It writes its output to the standard output stream (stdout)
-using the write system call.
+using the write system call and handles a variable number of arguments.
 
 The
 .I format
-string is composed of zero or more directives.
-Ordinary characters in the format string are written to the output
-unchanged.
+string is composed of ordinary characters, which are written unchanged,
+and directives beginning with the percent sign (%).
 
-A directive starts with the percent sign (%) and is followed by a
-conversion specifier.
+A directive consists of '%' followed by a conversion specifier.
 
 The following conversion specifiers are handled:
 
@@ -37,13 +67,18 @@ Prints a null-terminated string.
 .B %%
 Prints a literal percent sign.
 
+.TP
+.B %d , %i
+Prints a signed decimal integer.
+
 .SH RETURN VALUE
 Upon successful completion,
 .B _printf()
 returns the number of characters printed,
 excluding the terminating null byte.
 
-If an error occurs, the function returns -1.
+If an error occurs (such as a NULL format string),
+the function returns -1.
 
 .SH LIMITATIONS
 This version of
@@ -52,8 +87,7 @@ does not handle flags, field width, precision, length modifiers,
 or buffer management used in the standard C library printf.
 
 .SH AUTHOR
-Mariam Almaleki.
+Mariam Almaleki and Yara Aldossari.
 
 .SH SEE ALSO
 printf(3)
-
