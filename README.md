@@ -1,10 +1,19 @@
-This team project has three manditory tasks and a couples as advance tasks.
-I am Mariam teaming up with my peer Yara to create our printf function.
+Custom _printf Project
+======================
 
-these are some general rules at the beginning we need to follow, such as:
-- All your files should end with a new line
-- A README.md file, at the root of the folder of the project is mandatory
+This team project recreates a simplified version of the C library function printf.
+It focuses on variadic functions, format parsing, and modular programming.
+
+Team Members:
+- Mariam Almaleki
+- Yara Aldossari
+
+General Rules:
+- All files must end with a new line
+- A README.md file is mandatory
 - No more than 5 functions per file
+- No global variables allowed
+- Must include main.h with all prototypes
 
 Also there are limited functions to use:
 write (man 2 write)
@@ -32,5 +41,37 @@ functions.c -
 _________________________________________________________________________________
                                  Task number 1 - printf
 _________________________________________________________________________________
-building 
-iiiiiiiiiyyyyyyy hhhhyiu.:
+In this task we extend our _printf function to handle integer numbers.
+
+We still use the same prototype:
+int _printf(const char *format, ...);
+
+Now the function must also print:
+- %d : print a signed decimal integer (negative or positive)
+- %i : same as %d, print a signed integer
+
+To do that, we added and modified the following:
+
+1) New helper function:
+   - print_number(int n)
+     This function:
+     - checks if the number is negative, prints '-' and converts it to positive
+     - uses recursion to print each digit from left to right
+     - returns how many characters were printed
+
+2) main.h:
+   - add the prototype:
+     int print_number(int n);
+
+3) _printf.c:
+   - inside the big if/else block for format specifiers, we added:
+     else if (format[i] == 'd' || format[i] == 'i')
+         - take the next argument as int using va_arg
+         - call print_number and add its return value to the total count
+
+After Task 1, our _printf can handle:
+- %c : character
+- %s : string
+- %% : percent sign
+- %d : signed integer
+- %i : signed integer
