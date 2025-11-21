@@ -9,7 +9,6 @@ int _putchar(char c)
 {
  return (write(1, &c, 1));
 }
-
 /**
 * print_string - prints a string
 * @str: string to print
@@ -27,7 +26,6 @@ count++;
 }
 return (count);
 }
-
 /**
  * print_number - prints an integer
  * @n: integer to print
