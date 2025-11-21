@@ -5,7 +5,7 @@ This team project recreates a simplified version of the C library function print
 It focuses on variadic functions, format parsing, and modular programming.
 
 Team Members:
-- Mariam Almaleki
+- Mariam Backroush
 - Yara Aldossari
 
 General Rules:
@@ -24,20 +24,56 @@ va_end (man 3 va_end)
 va_copy (man 3 va_copy)
 va_arg (man 3 va_arg)
 
-_________________________________________________________________________________
+_____________________________________________________________________________________
                                  Task number 0 - Printf
-_________________________________________________________________________________
-We need to build a function following the rules mentioned above. this function should
-be able to print all these specifers (c s %).
-using Prototype: int _printf(const char *format, ...);
-printing (c) which is a single character
-printing (s) which is a string
-printing (%) which is a percentage sign
-creating 4 files:
-_printf.c - For Script
-main.h - Header files and  prototypes
-print_string.c - Prints a string
-functions.c - 
+________________________________________________________________________________________
+
+The goal of this task is to build the basic structure of our own printf function.
+In this stage, the function only needs to handle the three simple specifiers:
+c , s , %
+
+Prototype used:
+int _printf(const char *format, ...);
+
+What _printf should do in Task 0:
+- Read the format string character by character.
+- Print any normal character directly to the output.
+- When a % appears, check the next character to decide what to print.
+- Handle the following:
+  %c  prints a single character
+  %s  prints a string
+  %%  prints a percent sign
+
+Files created in this task:
+
+1) _printf.c
+   - This file contains the main logic of our custom printf.
+   - It loops through the format string.
+   - It checks for % and chooses the correct action.
+   - It uses helper functions to print characters or strings.
+
+2) main.h
+   - Header file for all prototypes.
+   - Required so all C files know the functions we created.
+   - Includes:
+     int _printf(const char *format, ...);
+     int print_char(int c);
+     int print_string(char *str);
+
+3) print_string.c
+   - Contains the function that prints a full string.
+   - Loops through characters and prints them using write.
+   - Returns how many characters were printed.
+
+4) functions.c
+   - Contains helper functions such as:
+     print_char for printing a single character.
+   - More helper functions will be added in the next tasks.
+
+At the end of Task 0:
+- Our _printf is able to mimic the basic behavior of the real printf,
+  but only for c , s , and %.
+- No flags, no width, no precision, no numbers yet.
 _________________________________________________________________________________
                                  Task number 1 - printf
 _________________________________________________________________________________
