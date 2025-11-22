@@ -57,23 +57,22 @@ int _printf(const char *format, ...)
                         else if (format[i] == 'b')
                         {
                                  count += print_binary(args);
-                        }
-                        
+}
                          else if (format[i] == 'u')
                          {
                          count += print_unsigned(args);
                           }
                           else if (format[i] == 'o')
-                          { 
+                          {
                                count += print_octal(args);
                               }
                               else if (format[i] == 'x')
-                             { 
+                             {
                               count += print_hex(args, 0);
                              }
                             else if (format[i] == 'X')
-                            { 
-                            count += print_hex(args, 1); 
+                            {
+                            count += print_hex(args, 1);
                            }
                           else
 			{
