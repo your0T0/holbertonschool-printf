@@ -94,7 +94,10 @@ int print_unsigned(va_list args)
     int i = 0, count = 0;
 
     if (n == 0)
-        return write(1, "0", 1);
+    {
+        write(1, "0", 1);
+        return (1);
+    }
 
     while (n > 0)
     {
@@ -103,19 +106,25 @@ int print_unsigned(va_list args)
     }
 
     while (i--)
-        count += write(1, &buffer[i], 1);
+    {
+        write(1, &buffer[i], 1);
+        count++;
+    }
 
-    return count;
+    return (count);
 }
 
 int print_octal(va_list args)
 {
     unsigned int n = va_arg(args, unsigned int);
-    char buffer[20];
+    char buffer[22];
     int i = 0, count = 0;
 
     if (n == 0)
-        return write(1, "0", 1);
+    {
+        write(1, "0", 1);
+        return (1);
+    }
 
     while (n > 0)
     {
@@ -124,20 +133,31 @@ int print_octal(va_list args)
     }
 
     while (i--)
-        count += write(1, &buffer[i], 1);
+    {
+        write(1, &buffer[i], 1);
+        count++;
+    }
 
-    return count;
+    return (count);
 }
 
 int print_hex(va_list args, int uppercase)
 {
     unsigned int n = va_arg(args, unsigned int);
-    char buffer[20];
+    char buffer[22];
     int i = 0, count = 0;
-    char *hex = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+    char *hex;
+
+    if (uppercase)
+        hex = "0123456789ABCDEF";
+    else
+        hex = "0123456789abcdef";
 
     if (n == 0)
-        return write(1, "0", 1);
+    {
+        write(1, "0", 1);
+        return (1);
+    }
 
     while (n > 0)
     {
@@ -146,8 +166,10 @@ int print_hex(va_list args, int uppercase)
     }
 
     while (i--)
-        count += write(1, &buffer[i], 1);
+    {
+        write(1, &buffer[i], 1);
+        count++;
+    }
 
-    return count;
+    return (count);
 }
-
