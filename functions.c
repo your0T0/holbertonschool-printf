@@ -86,3 +86,68 @@ int print_binary(va_list args)
 
     return (count);
 }
+
+int print_unsigned(va_list args)
+{
+    unsigned int n = va_arg(args, unsigned int);
+    char buffer[20];
+    int i = 0, count = 0;
+
+    if (n == 0)
+        return write(1, "0", 1);
+
+    while (n > 0)
+    {
+        buffer[i++] = (n % 10) + '0';
+        n /= 10;
+    }
+
+    while (i--)
+        count += write(1, &buffer[i], 1);
+
+    return count;
+}
+
+int print_octal(va_list args)
+{
+    unsigned int n = va_arg(args, unsigned int);
+    char buffer[20];
+    int i = 0, count = 0;
+
+    if (n == 0)
+        return write(1, "0", 1);
+
+    while (n > 0)
+    {
+        buffer[i++] = (n % 8) + '0';
+        n /= 8;
+    }
+
+    while (i--)
+        count += write(1, &buffer[i], 1);
+
+    return count;
+}
+
+int print_hex(va_list args, int uppercase)
+{
+    unsigned int n = va_arg(args, unsigned int);
+    char buffer[20];
+    int i = 0, count = 0;
+    char *hex = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+
+    if (n == 0)
+        return write(1, "0", 1);
+
+    while (n > 0)
+    {
+        buffer[i++] = hex[n % 16];
+        n /= 16;
+    }
+
+    while (i--)
+        count += write(1, &buffer[i], 1);
+
+    return count;
+}
+
